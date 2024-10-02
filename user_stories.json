@@ -1,0 +1,177 @@
+{
+    "epics": [
+        {
+            "name": "User Profile Management",
+            "description": "Allow users to create and manage their personal profiles.",
+            "business_value": "Increases user engagement and encourages users to personalize their experience, leading to a stronger sense of community.",
+            "user_stories": [
+                {
+                    "title": "Create a New Profile",
+                    "story": "As a Sarah Thompson, I want to create a new profile, so that I can connect with my friends and family.",
+                    "persona": {
+                        "name": "Sarah Thompson",
+                        "age": 28,
+                        "occupation": "Marketing Specialist",
+                        "background": "Sarah graduated with a degree in marketing and has been working in the field for 5 years. She recently moved to a new city for a job opportunity and is finding it hard to stay connected with her friends and family who live far away.",
+                        "motivation": "Sarah is motivated to stay updated on the lives of her loved ones and share her experiences with them, despite the distance.",
+                        "goal": "Sarah wants a platform where she can easily share life updates, photos, and messages with multiple friends and family members in one place."
+                    },
+                    "acceptanceCriteria": [
+                        "As Sarah Thompson, I can successfully create a new profile by providing a valid email address and password.",
+                        "As Sarah Thompson, I am prompted to provide a profile picture (optional) during the profile creation process.",
+                        "As Sarah Thompson, I receive a confirmation email upon successful profile creation.",
+                        "As Sarah Thompson, I can choose to connect my profile to other social media accounts (optional).",
+                        "As David Lee, I can search for former students using a combination of their first and last names.",
+                        "As David Lee, the search results accurately display profiles matching the entered name and graduation year.",
+                        "As David Lee, if no matching profiles are found, a message indicating this is clearly shown.",
+                        "As David Lee, I am able to send a connection request to any profile that appears in the search results.",
+                        "As Maria Rodriguez, I can upload multiple photos simultaneously from my device's gallery or camera roll.",
+                        "As Maria Rodriguez, I have the option to add captions and tag friends in the shared photos.",
+                        "As Maria Rodriguez, my privacy settings are respected, and I can control who sees the shared photos.",
+                        "As John Kim, the news feed displays updates chronologically, with the most recent updates appearing first.",
+                        "As John Kim, each update in the news feed clearly shows the name of the friend who posted it and the time of posting.",
+                        "As John Kim, I can easily distinguish between different types of updates, such as text posts, shared photos, or links.",
+                        "As Emily Chen, I can search for writing groups using relevant keywords.",
+                        "As Emily Chen, I can view a list of writing groups with descriptions and member counts.",
+                        "As Emily Chen, I can send a request to join a writing group that aligns with my interests.",
+                        "As Emily Chen, I receive a notification when my request to join a writing group is approved or denied."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Connect with Friends",
+            "description": "Enable users to find and connect with their friends.",
+            "business_value": "Grows the platform's user base and strengthens the social network effect.",
+            "user_stories": [
+                {
+                    "title": "Search for Friends",
+                    "story": "As a David Lee, I want to search for my former students by name and graduation year, so that I can easily find and connect with them.",
+                    "persona": {
+                        "name": "David Lee",
+                        "age": 55,
+                        "occupation": "High School Teacher",
+                        "background": "David has been a teacher for over 20 years and takes pride in seeing his former students succeed. He enjoys hearing about their lives after graduation but finds it difficult to keep track of everyone.",
+                        "motivation": "David wants to stay connected with his former students and foster a sense of community among them.",
+                        "goal": "David is looking for a platform where he can connect with his former students, share news and updates about his life, and encourage interaction among his former pupils."
+                    },
+                    "acceptanceCriteria": [
+                        "As David Lee, I can access a dedicated search bar specifically designed for finding former students.",
+                        "As David Lee, I can filter my search results by graduation year, using a dropdown menu or a similar input field.",
+                        "As David Lee, I can view a list of suggested profiles based on my current connections and network."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Content Sharing",
+            "description": "Allow users to share various types of content with their connections.",
+            "business_value": "Drives user engagement and interaction, making the platform a more lively and dynamic space for communication.",
+            "user_stories": [
+                {
+                    "title": "Share Photos with Friends",
+                    "story": "As a Maria Rodriguez, I want to share photos from college events with my friends, so that they can see what I'm up to and feel connected to my life.",
+                    "persona": {
+                        "name": "Maria Rodriguez",
+                        "age": 22,
+                        "occupation": "College Student",
+                        "background": "Maria is a third-year college student living on campus. She's involved in various clubs and organizations and enjoys attending social events. She wants to stay connected with her friends from high school who are now scattered across different colleges.",
+                        "motivation": "Maria wants to maintain and strengthen her relationships with her close friends, even as they navigate different colleges and life paths.",
+                        "goal": "Maria is looking for a platform to easily share photos and memories with her friends and stay updated on their lives."
+                    },
+                    "acceptanceCriteria": [
+                        {
+                            "epic": "User Profile Management",
+                            "user_story": "Create a New Profile",
+                            "acceptance_criteria": [
+                                "As Sarah Thompson, I can successfully create a new profile by providing a valid email address and a password that meets the defined strength requirements.",
+                                "As Sarah Thompson, upon submitting the registration form, I receive a confirmation email with a link to verify my email address.",
+                                "As Sarah Thompson, I can choose to upload a profile picture during the registration process or add it later.",
+                                "As Sarah Thompson, after successfully creating my profile, I am automatically logged in and redirected to my profile page.",
+                                "As Sarah Thompson, I have the option to connect my profile to existing social media accounts, such as Facebook or Twitter, for easier login in the future."
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "News Feed and Updates",
+            "description": "Provide a centralized feed where users can see updates from their friends.",
+            "business_value": "Keeps users informed about their friends' activities and encourages regular visits to the platform.",
+            "user_stories": [
+                {
+                    "title": "View Friend's Updates",
+                    "story": "As a John Kim, I want to quickly browse through my news feed and see updates from my friends, so that I can stay in the loop about their lives even with my busy schedule.",
+                    "persona": {
+                        "name": "John Kim",
+                        "age": 35,
+                        "occupation": "Software Engineer",
+                        "background": "John is a busy professional who works long hours and travels frequently for work. He values his free time and prefers to connect with friends and family online rather than over the phone.",
+                        "motivation": "John seeks a convenient and efficient way to stay in touch with his social circle without disrupting his busy schedule.",
+                        "goal": "John wants a platform where he can quickly post updates, share interesting articles, and engage in lighthearted conversations with friends and family when he has a few free moments."
+                    },
+                    "acceptanceCriteria": [
+                        "As Sarah Thompson, I can successfully create a new profile by providing a valid email address and a password that meets the defined strength requirements.",
+                        "As Sarah Thompson, upon submitting the registration form, I receive a confirmation email with a link to verify my email address.",
+                        "As Sarah Thompson, I can choose to upload a profile picture during the registration process or add it later.",
+                        "As Sarah Thompson, after successfully creating my profile, I am automatically logged in and redirected to my profile page.",
+                        "As Sarah Thompson, I have the option to connect my profile to existing social media accounts, such as Facebook or Twitter, for easier login in the future.",
+                        "As David Lee, I can access a dedicated search bar specifically designed for finding former students.",
+                        "As David Lee, I can filter my search results by graduation year, using a dropdown menu or a similar input field.",
+                        "As David Lee, I can view a list of suggested profiles based on my current connections and network.",
+                        "As Maria Rodriguez, I can upload multiple photos simultaneously from my device's gallery or camera roll.",
+                        "As Maria Rodriguez, I have the option to add captions and tag friends in the shared photos.",
+                        "As Maria Rodriguez, my privacy settings are respected, and I can control who sees the shared photos.",
+                        "As John Kim, the news feed displays updates chronologically, with the most recent updates appearing first.",
+                        "As John Kim, each update in the news feed clearly shows the name of the friend who posted it and the time of posting.",
+                        "As John Kim, I can easily distinguish between different types of updates, such as text posts, shared photos, or links.",
+                        "As Emily Chen, I can search for writing groups using relevant keywords.",
+                        "As Emily Chen, I can view a list of writing groups with descriptions and member counts.",
+                        "As Emily Chen, I can send a request to join a writing group that aligns with my interests.",
+                        "As Emily Chen, I receive a notification when my request to join a writing group is approved or denied."
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Groups and Communities",
+            "description": "Enable users to create and join groups based on shared interests.",
+            "business_value": "Fosters a sense of belonging and community among users with common interests, increasing user engagement and platform stickiness.",
+            "user_stories": [
+                {
+                    "title": "Join a Writing Group",
+                    "story": "As a Emily Chen, I want to join a group for freelance writers, so that I can connect with other writers, discuss writing projects, and share experiences with like-minded individuals.",
+                    "persona": {
+                        "name": "Emily Chen",
+                        "age": 42,
+                        "occupation": "Freelance Writer",
+                        "background": "Emily works from home and enjoys the flexibility of her job. However, she sometimes feels isolated and misses having regular social interaction with colleagues. She's interested in connecting with other professionals in her field.",
+                        "motivation": "Emily wants to build relationships with other freelance writers, share experiences, and feel part of a community.",
+                        "goal": "Emily is looking for a platform where she can connect with other writers, join groups with shared interests, and participate in discussions about writing and freelancing."
+                    },
+                    "acceptanceCriteria": [
+                        "As Sarah Thompson, I can successfully create a new profile by providing a valid email address and a password that meets the defined strength requirements.",
+                        "As Sarah Thompson, upon submitting the registration form, I receive a confirmation email with a link to verify my email address.",
+                        "As Sarah Thompson, I can choose to upload a profile picture during the registration process or add it later.",
+                        "As Sarah Thompson, after successfully creating my profile, I am automatically logged in and redirected to my profile page.",
+                        "As Sarah Thompson, I have the option to connect my profile to existing social media accounts, such as Facebook or Twitter, for easier login in the future.",
+                        "As David Lee, I can access a dedicated search bar specifically designed for finding former students.",
+                        "As David Lee, I can filter my search results by graduation year, using a dropdown menu or a similar input field.",
+                        "As David Lee, I can view a list of suggested profiles based on my current connections and network.",
+                        "As Maria Rodriguez, I can upload multiple photos simultaneously from my device's gallery or camera roll.",
+                        "As Maria Rodriguez, I have the option to add captions and tag friends in the shared photos.",
+                        "As Maria Rodriguez, my privacy settings are respected, and I can control who sees the shared photos.",
+                        "As John Kim, the news feed displays updates chronologically, with the most recent updates appearing first.",
+                        "As John Kim, each update in the news feed clearly shows the name of the friend who posted it and the time of posting.",
+                        "As John Kim, I can easily distinguish between different types of updates, such as text posts, shared photos, or links.",
+                        "As Emily Chen, I can search for writing groups using relevant keywords.",
+                        "As Emily Chen, I can view a list of writing groups with descriptions and member counts.",
+                        "As Emily Chen, I can send a request to join a writing group that aligns with my interests.",
+                        "As Emily Chen, I receive a notification when my request to join a writing group is approved or denied."
+                    ]
+                }
+            ]
+        }
+    ]
+}

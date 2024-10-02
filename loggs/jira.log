@@ -1,0 +1,25 @@
+2024-09-02 02:52:06,358 - JiraLogger - INFO - {
+    "id": "10016",
+    "key": "SCRUM-15",
+    "self": "https://stud-team-s8gnf6oc.atlassian.net/rest/api/2/issue/10016"
+}
+2024-09-02 02:52:07,219 - JiraLogger - INFO - {
+    "id": "10017",
+    "key": "SCRUM-16",
+    "self": "https://stud-team-s8gnf6oc.atlassian.net/rest/api/2/issue/10017"
+}
+2024-09-02 02:52:08,169 - JiraLogger - INFO - {
+    "id": "10018",
+    "key": "SCRUM-17",
+    "self": "https://stud-team-s8gnf6oc.atlassian.net/rest/api/2/issue/10018"
+}
+2024-09-02 02:52:08,974 - JiraLogger - INFO - {
+    "id": "10019",
+    "key": "SCRUM-18",
+    "self": "https://stud-team-s8gnf6oc.atlassian.net/rest/api/2/issue/10019"
+}
+2024-09-02 02:52:09,924 - JiraLogger - INFO - {
+    "id": "10020",
+    "key": "SCRUM-19",
+    "self": "https://stud-team-s8gnf6oc.atlassian.net/rest/api/2/issue/10020"
+}

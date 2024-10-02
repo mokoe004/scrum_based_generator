@@ -1,0 +1,14 @@
+{
+    "product_name": "Facebook",
+    "niche": "Farm",
+    "product_vision": {
+        "target_group": "humans",
+        "problem": "who want to maintain contact with friends who live far away",
+        "product_name": "Facebook",
+        "product_type": "an Internet Platform",
+        "key_features": "users to connect with each other and exchange messages",
+        "competitor": "Email",
+        "unique_benefit": "are the messages on the pinboard visible to all friends, allowing a community of friends to develop"
+    },
+    "personas_amount": 3
+}
