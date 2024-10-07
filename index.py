@@ -40,14 +40,13 @@ def save_user_stories(userStories):
 pvision = get_pVision()
 personas = generator.generate_personas(pvision, 5)
 logger.info("Personas generated successfully.")
-user_stories = generator.generate_user_storys_and_epics(pvision, personas)
-# for epic in user_stories["epics"]:
-#     for story in epic["user_stories"]:
-#         acceptance_criteria = genai.generate_acceptance_criteria(user_stories)
-#         acceptance_criteria = json.loads(acceptance_criteria)
-#         story["acceptanceCriteria"] = acceptance_criteria
-# logger.info("User stories generated successfully.")
-# save_user_stories(user_stories)
+epics = generator.generate_epics(pvision, personas)
+logger.info("Epics generated successfully.")
+for epic in epics:
+    userStories = generator.generate_user_storys(pvision, personas, epic)
+    logger.info("User stories generated successfully.")
+    epic["user_stories"] = userStories
+save_user_stories(epics)
 
 
 # Funktion zum Konvertieren von JSON-Daten in Jira-kompatibles Markdown

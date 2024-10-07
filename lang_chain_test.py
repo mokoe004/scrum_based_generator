@@ -3,14 +3,20 @@ import os, json
 from typing import List, Optional
 
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_mistralai import ChatMistralAI
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 
 from pydantic import BaseModel, Field
+import models.user_storys as user_storys
 
-model = ChatGoogleGenerativeAI(
-    model = "gemini-1.5-pro", 
-    api_key=os.environ.get("GOOGLE_API_KEY")
+# model = ChatGoogleGenerativeAI(
+#     model = "gemini-1.5-flash", 
+#     api_key=os.environ.get("GOOGLE_API_KEY")
+#     )
+
+model = ChatMistralAI(
+    model = "mistral-medium"
     )
 
 # from langchain_core.messages import HumanMessage, SystemMessage
@@ -39,6 +45,7 @@ class PersonaModel(BaseModel):
     background: str = Field(description="The background story or history of the persona")
     motivation: str = Field(description="What drives or motivates the persona")
     goal: str = Field(description="The main goal the persona wants to achieve")
+    joke : Joke = Field(description="A joke to tell the persona")
 
 # Definiere ein Modell, das eine Liste von PersonaModel-Objekten enthält
 class PersonaListModel(BaseModel):
@@ -46,7 +53,7 @@ class PersonaListModel(BaseModel):
 
     personas: List[PersonaModel] = Field(description="A list of persona objects")
 
-parser = JsonOutputParser(pydantic_object = PersonaListModel)
+parser = JsonOutputParser(pydantic_object = user_storys.EpicListModel)
 
 prompt = PromptTemplate(
     template="Answer the user query.\n{format_instructions}\n{query}\n",
@@ -57,7 +64,7 @@ prompt = PromptTemplate(
 chain = prompt | model | parser
 #print(chain.invoke(messages))
 
-output = chain.invoke({"query": "Generate example personas for a marketing campaign"})
+output = chain.invoke({"query": "Generate Users Stories for a marketing campaign. "})
 print(output)
 #print(chain.invoke("Tell me a joke about cats"))
 

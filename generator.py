@@ -1,14 +1,15 @@
 import os, json
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 
 from logger_config import setup_logger
-from models.user_storys import EpicListModel, PersonaListModel
+import models.user_storys as user_storys
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables.base import RunnableSerializable
+from langchain_core.exceptions import OutputParserException
 
 logger = setup_logger("GeneratorLogger", "generator.log")
 
@@ -20,7 +21,7 @@ def generate_personas(pVision, personas_amount):
     prompt_in = f"""
                                 You are a project owner, responsible for creating personas for a new project. 
                                 Generate {personas_amount} personas for the following project. 
-                                Provide only the personas in JSON as output.
+                                Provide output as specified in the format_instructions above.
 
                                 Generate {personas_amount} personas for the following project, discribed with the Product vision. 
                                 Ensure that each persona is distinct, with detailed attributes based on the project vision. 
@@ -29,58 +30,69 @@ def generate_personas(pVision, personas_amount):
 
                                 Product vision: {pVision}\n\n
                                 
-                                1. Name: Choose a realistic and contextually appropriate name based on the demographics and market segment.
-                                2. Age: Consider the typical age range of individuals relevant to the project vision.
-                                3. Occupation: Identify a profession that aligns with the project's goals and the persona's motivations.
-                                4. Background: Detail the persona’s background, including education, experience, and personal life. Think about how this background influences their interactions with the product or service.
-                                5. Motivation: What drives this persona? What are their personal or professional motivations in relation to the project vision? Be specific in connecting their motivations to the project.
-                                6. Goal: Define the persona’s main goal when interacting with the product or service. Consider how their objectives may differ depending on their role or background.
+                                1. name: Choose a realistic and contextually appropriate name based on the demographics and market segment.
+                                2. age: Consider the typical age range of individuals relevant to the project vision.
+                                3. occupation: Identify a profession that aligns with the project's goals and the persona's motivations.
+                                4. background: Detail the persona’s background, including education, experience, and personal life. Think about how this background influences their interactions with the product or service.
+                                5. motivation: What drives this persona? What are their personal or professional motivations in relation to the project vision? Be specific in connecting their motivations to the project.
+                                6. goal: Define the persona’s main goal when interacting with the product or service. Consider how their objectives may differ depending on their role or background.
 
                                 Each persona should reflect a different aspect of the target audience, ensuring diversity in background, motivation, and goals. 
 
                                 """
-
-    parser = JsonOutputParser(pydantic_object=PersonaListModel)
-    prompt = PromptTemplate(
-        template=prompt_in,
-        partial_variables={"format_instructions": parser.get_format_instructions()},
-    )
-    chain = prompt | model | parser
-    response = generate_valid_json(chain)
+    response = generate_valid_json(prompt_in, user_storys.PersonaListModel)
     logger.info("Personas generated successfully.")
-    return response
+    return response["personas"]
 
-
-def generate_user_storys_and_epics(pVision: str, personas: dict):
+def generate_epics(pVision: str, personas: dict):
     prompt_in = f"""
-                                You are a project owner, responsible for creating user stories and epics for a new project. 
-                                Generate User Storys and Epics, based on the Product Vision and the Personas.
-                                Always use the persona as the subject of the user story and for each Persona one User Story. 
-                                Provide only the user stories and epics in JSON as output.
+                                You are a project owner, responsible for creating epics for a new project.
+                                Generate epics based on the product vision and the personas.
+                                Provide only the epics as specified in the format_instructions.
 
-                                Generate Epics and User Stories based on the following Personas and Product Vision. Ensure that each Epic contains a clear business value and that User Stories follow the format: "As a [Persona], I want to [Goal], so that [Benefit]." 
+                                Generate epics based on the following product vision and personas.
+                                Ensure that each epic contains a clear business value that aligns with the overall product vision.
+                                For each epic, consider the following attributes and context. Follow a step-by-step thought process to carefully define each aspect:
+
+                                1. name: Choose a descriptive name that reflects the core theme or goal of the epic.
+                                2. description: Provide a brief description of the epic, outlining the main features or functionality it encompasses.
+                                3. business_value: Define the business value or impact of the epic in relation to the product vision. Consider how this epic contributes to the overall success of the project.
+
+                                Each epic should represent a significant feature or functionality within the project, with a clear business value and impact on the product vision.
+
+                                Product Vision: {pVision} \n\n
+                                Personas: {personas} \n\n
+                                """
+    response = generate_valid_json(prompt_in, user_storys.EpicListModel)
+    logger.info("Epics generated successfully.")
+    logger.info(response)
+    return response["epics"]
+
+
+def generate_user_storys(pVision: str, personas: dict, epic: dict):
+    prompt_in = f"""
+                                You are a project owner, responsible for creating user_stories for a new project. 
+                                Generate user_storys for the given epic, based on the product vision and the personas.
+                                Always use one persona as the subject of the user_story. 
+                                Provide only the user_stories as specified in format_instructions.
+
+                                Generate user_stories based on the following personas and product vision. Ensure that each epic contains a clear business value and that user_stories follow the format: "As a [persona], I want to [goal], so that [benefit]." 
 
                                 Important Guidelines:
-                                1. Persona Selection: The actor for each User Story must be one of the predefined personas listed below.
-                                2. Business Value: Each Epic must have a clear business value that aligns with the overall product vision.
-                                3. No Acceptance Criteria: Do not include acceptance criteria for either Epics or User Stories.
-                                4. Realistic Goals: The goals in the User Stories must be achievable and grounded, as they will serve as the basis for small-scale code generation.
-                                5. Output Format: Return the result in valid JSON format, with Epics and their corresponding User Stories.
+                                1. persona Selection: The actor for each user_story must be one of the predefined personas listed below.
+                                2. business_value: Each epic must have a clear business_value that aligns with the overall product vision.
+                                3. No acceptance_criteria: Do not include acceptance criteria for either epics or user_stories.
+                                4. Realistic Goals: The goals in the user_stories must be achievable and grounded, as they will serve as the basis for small-scale code generation.
+                                5. Output Format: Return the result in valid JSON format, with epics and their corresponding user_stories.
 
                                 Personas: {personas.__str__} \n\n
                                 Product Vision: {pVision} \n\n
-
+                                Epic: {epic} \n\n
                 """
-    parser = JsonOutputParser(pydantic_object=EpicListModel)
-    prompt = PromptTemplate(
-        template=prompt_in,
-        partial_variables={"format_instructions": parser.get_format_instructions()},
-    )
-    chain = prompt | model | parser
-    response = generate_valid_json(chain)
-    logger.info("User stories and epics generated successfully.")
+    response = generate_valid_json(prompt_in, user_storys.UserStoryListModel)
+    logger.info("User stories generated successfully.")
     logger.info(response)
-    return response
+    return response["user_stories"]
 
 
 def generate_acceptance_criteria(userStory: dict):
@@ -103,22 +115,15 @@ def generate_acceptance_criteria(userStory: dict):
                                 5. User Perspective: Write the acceptance criteria from the personas perspective of the user story, focusing on their interactions and expectations.
                                 6. Success Conditions: Define what constitutes success for each user story, including any conditions for completing the feature.
                 """
-    parser = JsonOutputParser(pydantic_object=List[str])
-    prompt = PromptTemplate(
-        template=prompt_in,
-        partial_variables={"format_instructions": parser.get_format_instructions()},
-    )
-    chain = prompt | model | parser
-    response = generate_valid_json(chain)
+    response = generate_valid_json(prompt_in, user_storys.AcceptanceCriteriaModel)
     logger.info("Acceptance criteria generated successfully.")
-    return response
+    return response["acceptance_criteria"]
 
 
 def generate_tasks(userStory: dict):
     prompt_in = f"""
                                 You are a project owner, responsible for creating tasks for user stories. 
-                                Generate tasks for the following user stories. 
-                                Provide only the tasks in JSON as output.
+                                Generate tasks for the following user stories. Provide only the tasks as a List as output.
 
                                 Generate tasks for the following user story. 
                                 Ensure that the tasks are specific, actionable, and focused on the implementation details. 
@@ -127,6 +132,7 @@ def generate_tasks(userStory: dict):
 
                                 User Story: {userStory} \n\n
 
+                                Best Practices:
                                 1. Specificity: Each task should be specific and focused on a single action or goal.
                                 2. Actionable: The tasks should be actionable and clearly defined, with a clear outcome or result.
                                 3. Implementation Details: Focus on the steps needed to implement the user story, rather than high-level goals.
@@ -134,13 +140,8 @@ def generate_tasks(userStory: dict):
                                 5. Testability: Ensure that each task can be tested and verified, either through automated tests or manual review.
                                 6. Priority: Assign a priority or order to the tasks based on their importance and impact on the user story.
                                         """
-    parser = JsonOutputParser(pydantic_object=List[str])
-    prompt = PromptTemplate(
-        template=prompt_in,
-        partial_variables={"format_instructions": parser.get_format_instructions()},
-    )
-    chain = prompt | model | parser
-    response = generate_valid_json(chain)
+    
+    response = generate_valid_json(prompt_in, user_storys.TasksModel)
     logger.info("Tasks generated successfully.")
     return response.text
 
@@ -177,7 +178,7 @@ def create_backlog(userStorys: dict):
         partial_variables={"format_instructions": parser.get_format_instructions()},
     )
     chain = prompt | model | parser
-    response = generate_valid_json(chain)
+    response = generate_valid_json(chain, List[str])
     logger.info("Backlog generated successfully.")
     return response.text
 
@@ -248,33 +249,42 @@ def generate_code(userStorys: dict, pVision: str):
     """
 
 
-def generate_valid_json(chain: RunnableSerializable[dict, Any]) -> dict:
+def generate_valid_json(prompt_in: str, scheme: BaseModel) -> dict:
     """
-    Generate a valid JSON output from the given chain.
+    Generate valid JSON output based on the given prompt and Pydantic scheme.
 
     Args:
-            chain (RunnableSerializable[dict, Any]): The chain to generate the JSON output from.
+        prompt_in (str): The prompt to generate the JSON output.
+        scheme (BaseModel): The Pydantic scheme to validate the generated JSON.
 
     Returns:
-            dict: The generated JSON output
+        dict: The generated JSON output that is valid based on the scheme.
 
     Raises:
-            ValueError: If a valid JSON output cannot be generated after multiple attempts
+        ValueError: If the generated JSON is invalid after multiple attempts
+
     """
     result = {}
     count = 0
-    while count < 5:
-        result = chain.invoke({})
 
+    parser = JsonOutputParser(pydantic_object=scheme)
+    prompt = PromptTemplate(
+        template="Answer the user query.\n{format_instructions}\n{query}\n",
+        input_variables=["query"],
+        partial_variables={"format_instructions": parser.get_format_instructions()},
+    )
+    chain = prompt | model | parser
+
+    while count < 5:
         # Check if result is serializable to JSON
         try:
-            json_str = json.dumps(result)  # Attempt to serialize
-            return json.loads(
-                json_str
-            )  # Return deserialized dict to ensure it's valid JSON
-        except (TypeError, ValueError) as e:
+            result = chain.invoke({"query": prompt_in})
+            scheme.model_validate(result)
+            # result = scheme(**result)
+            return result
+        except (TypeError, ValueError, OutputParserException, ValidationError) as e:
             logger.warning("Invalid JSON generated. Trying again...")
-            logger.warning(f"Generated Output: {result}, Error: {e}")
+            logger.warning(f"Generated Output: {result},\n Error: {e}")
             count += 1
     logger.error("Failed to generate valid JSON after multiple attempts.")
     raise ValueError("Failed to generate valid JSON.")
