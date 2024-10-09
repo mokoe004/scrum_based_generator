@@ -26,6 +26,7 @@ class UserStoryModel(BaseModel):
         description="The detailed user story in the format 'As a [persona], I want to [Goal], so that [Benefit].'"
     )
     persona: PersonaModel = Field(description="The persona associated with the story")
+    acceptance_criteria: List[str] = Field(description="A list of acceptance criteria for the user story")
 class UserStoryListModel(BaseModel):
     """Represents a list of user stories."""
 

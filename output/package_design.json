@@ -1,0 +1,76 @@
+{
+    "directorys": {
+        "app.js": "",
+        "package.json": "",
+        "package-lock.json": "",
+        "src": {
+            "models": {
+                "user.js": "",
+                "message.js": "",
+                "friendRequest.js": "",
+                "post.js": ""
+            },
+            "controllers": {
+                "userController.js": "",
+                "authController.js": "",
+                "messageController.js": "",
+                "friendRequestController.js": "",
+                "postController.js": ""
+            },
+            "routes": {
+                "userRoutes.js": "",
+                "authRoutes.js": "",
+                "messageRoutes.js": "",
+                "friendRequestRoutes.js": "",
+                "postRoutes.js": ""
+            },
+            "services": {
+                "userService.js": "",
+                "authService.js": "",
+                "messageService.js": "",
+                "friendRequestService.js": "",
+                "postService.js": ""
+            },
+            "utils": {
+                "validation.js": "",
+                "errorHandling.js": ""
+            },
+            "database": {
+                "connection.js": ""
+            },
+            "app.js": ""
+        },
+        "test": {
+            "unit": {
+                "userController.test.js": "",
+                "authController.test.js": "",
+                "messageController.test.js": "",
+                "friendRequestController.test.js": "",
+                "postController.test.js": ""
+            },
+            "integration": {
+                "userRoutes.test.js": "",
+                "authRoutes.test.js": "",
+                "messageRoutes.test.js": "",
+                "friendRequestRoutes.test.js": "",
+                "postRoutes.test.js": ""
+            }
+        },
+        "public": {
+            "css": {
+                "style.css": ""
+            },
+            "js": {
+                "script.js": ""
+            },
+            "views": {
+                "index.ejs": "",
+                "profile.ejs": "",
+                "login.ejs": "",
+                "signup.ejs": "",
+                "messages.ejs": "",
+                "newsfeed.ejs": ""
+            }
+        }
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "project": {
+        "package_design": {
+            "directorys": {
+                "src": {
+                    "models": {
+                        "user.js": "// User Model\nconst mongoose = require('mongoose');\n\nconst userSchema = new mongoose.Schema({\n  name: {\n    type: String,\n    required: true\n  },\n  email: {\n    type: String,\n    required: true,\n    unique: true\n  },\n  password: {\n    type: String,\n    required: true\n  },\n  birthdate: {\n    type: Date\n  },\n  profilePicture: {\n    type: String\n  },\n  friends: [\n    {\n      type: mongoose.Schema.Types.ObjectId,\n      ref: 'User'\n    }\n  ],\n  friendRequests: [\n    {\n      type: mongoose.Schema.Types.ObjectId,\n      ref: 'FriendRequest'\n    }\n  ],\n  posts: [\n    {\n      type: mongoose.Schema.Types.ObjectId,\n      ref: 'Post'\n    }\n  ]\n});\n\nmodule.exports = mongoose.model('User', userSchema);\n",
+                        "message.js": "// Message Model\nconst mongoose = require('mongoose');\n\nconst messageSchema = new mongoose.Schema({\n  sender: {\n    type: mongoose.Schema.Types.ObjectId,\n    ref: 'User',\n    required: true\n  },\n  recipient: {\n    type: mongoose.Schema.Types.ObjectId,\n    ref: 'User',\n    required: true\n  },\n  content: {\n    type: String,\n    required: true\n  },\n  timestamp: {\n    type: Date,\n    default: Date.now\n  },\n  reactions: [\n    {\n      user: {\n        type: mongoose.Schema.Types.ObjectId,\n        ref: 'User'\n      },\n      emoji: {\n        type: String\n      }\n    }\n  ]\n});\n\nmodule.exports = mongoose.model('Message', messageSchema);\n",
+                        "friendRequest.js": "// Friend Request Model\nconst mongoose = require('mongoose');\n\nconst friendRequestSchema = new mongoose.Schema({\n  sender: {\n    type: mongoose.Schema.Types.ObjectId,\n    ref: 'User',\n    required: true\n  },\n  recipient: {\n    type: mongoose.Schema.Types.ObjectId,\n    ref: 'User',\n    required: true\n  },\n  status: {\n    type: String,\n    enum: ['pending', 'accepted', 'rejected'],\n    default: 'pending'\n  }\n});\n\nmodule.exports = mongoose.model('FriendRequest', friendRequestSchema);\n",
+                        "post.js": "// Post Model\nconst mongoose = require('mongoose');\n\nconst postSchema = new mongoose.Schema({\n  author: {\n    type: mongoose.Schema.Types.ObjectId,\n    ref: 'User',\n    required: true\n  },\n  content: {\n    type: String,\n    required: true\n  },\n  image: {\n    type: String\n  },\n  likes: [\n    {\n      type: mongoose.Schema.Types.ObjectId,\n      ref: 'User'\n    }\n  ],\n  comments: [\n    {\n      type: mongoose.Schema.Types.ObjectId,\n      ref: 'Comment'\n    }\n  ],\n  timestamp: {\n    type: Date,\n    default: Date.now\n  }\n});\n\nmodule.exports = mongoose.model('Post', postSchema);\n"
+                    },
+                    "controllers": {
+                        "userController.js": "// userController.js\nconst User = require('../models/user');\n\n// Controller functions for user-related actions\n\nexports.getProfile = async (req, res) => {\n  try {\n    const user = await User.findById(req.user.id);\n    res.render('profile', { user });\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.updateProfile = async (req, res) => {\n  try {\n    // Update user profile logic\n    res.redirect('/profile');\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n",
+                        "authController.js": "// authController.js\n\n// Controller functions for authentication\n\nexports.getLogin = (req, res) => {\n  res.render('login');\n};\n\nexports.postLogin = async (req, res) => {\n  try {\n    // Authentication logic\n    res.redirect('/newsfeed');\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.getSignup = (req, res) => {\n  res.render('signup');\n};\n\nexports.postSignup = async (req, res) => {\n  try {\n    // User registration logic\n    res.redirect('/login');\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.logout = (req, res) => {\n  req.logout();\n  res.redirect('/login');\n};\n",
+                        "messageController.js": "// messageController.js\n\n// Controller functions for message-related actions\n\nexports.getMessages = async (req, res) => {\n  try {\n    // Retrieve messages logic\n    res.render('messages', { messages });\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.sendMessage = async (req, res) => {\n  try {\n    // Send message logic\n    res.redirect('/messages');\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n",
+                        "friendRequestController.js": "// friendRequestController.js\n\n// Controller functions for friend request-related actions\n\nexports.sendFriendRequest = async (req, res) => {\n  try {\n    // Send friend request logic\n    res.redirect(`/profile/${req.params.userId}`);\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.manageFriendRequest = async (req, res) => {\n  try {\n    // Accept/Reject friend request logic\n    res.redirect('/friend-requests');\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n",
+                        "postController.js": "// postController.js\n\n// Controller functions for post-related actions\n\nexports.createPost = async (req, res) => {\n  try {\n    // Create post logic\n    res.redirect('/newsfeed');\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.likePost = async (req, res) => {\n  try {\n    // Like post logic\n    res.redirect(`/posts/${req.params.postId}`);\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n\nexports.commentOnPost = async (req, res) => {\n  try {\n    // Comment on post logic\n    res.redirect(`/posts/${req.params.postId}`);\n  } catch (err) {\n    console.error(err);\n    res.status(500).send('Server Error');\n  }\n};\n"
+                    },
+                    "routes": {
+                        "userRoutes.js": "// userRoutes.js\nconst express = require('express');\nconst router = express.Router();\nconst userController = require('../controllers/userController');\n\n// Route for user profile\nrouter.get('/profile', userController.getProfile);\nrouter.post('/profile', userController.updateProfile);\n\nmodule.exports = router;\n",
+                        "authRoutes.js": "// authRoutes.js\nconst express = require('express');\nconst router = express.Router();\nconst authController = require('../controllers/authController');\n\n// Routes for authentication\nrouter.get('/login', authController.getLogin);\nrouter.post('/login', authController.postLogin);\nrouter.get('/signup', authController.getSignup);\nrouter.post('/signup', authController.postSignup);\nrouter.get('/logout', authController.logout);\n\nmodule.exports = router;\n",
+                        "messageRoutes.js": "// messageRoutes.js\nconst express = require('express');\nconst router = express.Router();\nconst messageController = require('../controllers/messageController');\n\n// Routes for messaging\nrouter.get('/messages', messageController.getMessages);\nrouter.post('/messages', messageController.sendMessage);\n\nmodule.exports = router;\n",
+                        "friendRequestRoutes.js": "// friendRequestRoutes.js\nconst express = require('express');\nconst router = express.Router();\nconst friendRequestController = require('../controllers/friendRequestController');\n\n// Routes for friend requests\nrouter.post('/friend-requests/:userId', friendRequestController.sendFriendRequest);\nrouter.put('/friend-requests/:requestId', friendRequestController.manageFriendRequest);\n\nmodule.exports = router;\n",
+                        "postRoutes.js": "// postRoutes.js\nconst express = require('express');\nconst router = express.Router();\nconst postController = require('../controllers/postController');\n\n// Routes for posts\nrouter.post('/posts', postController.createPost);\nrouter.post('/posts/:postId/like', postController.likePost);\nrouter.post('/posts/:postId/comment', postController.commentOnPost);\n\nmodule.exports = router;\n"
+                    },
+                    "services": {
+                        "userService.js": "// userService.js\n\n// Service functions for user-related operations\n\nconst createUser = async (userData) => {\n  try {\n    // Create user logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nconst getUserById = async (userId) => {\n  try {\n    // Get user by ID logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nmodule.exports = {\n  createUser,\n  getUserById\n};\n",
+                        "authService.js": "// authService.js\n\n// Service functions for authentication\n\nconst loginUser = async (email, password) => {\n  try {\n    // User login logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nmodule.exports = {\n  loginUser\n};\n",
+                        "messageService.js": "// messageService.js\n\n// Service functions for message-related operations\n\nconst sendMessage = async (senderId, recipientId, content) => {\n  try {\n    // Send message logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nconst getMessages = async (userId) => {\n  try {\n    // Get messages logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nmodule.exports = {\n  sendMessage,\n  getMessages\n};\n",
+                        "friendRequestService.js": "// friendRequestService.js\n\n// Service functions for friend request-related operations\n\nconst sendFriendRequest = async (senderId, recipientId) => {\n  try {\n    // Send friend request logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nconst manageFriendRequest = async (requestId, status) => {\n  try {\n    // Manage friend request logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nmodule.exports = {\n  sendFriendRequest,\n  manageFriendRequest\n};\n",
+                        "postService.js": "// postService.js\n\n// Service functions for post-related operations\n\nconst createPost = async (postData) => {\n  try {\n    // Create post logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nconst getPostById = async (postId) => {\n  try {\n    // Get post by ID logic\n  } catch (err) {\n    throw err;\n  }\n};\n\nmodule.exports = {\n  createPost,\n  getPostById\n};\n"
+                    },
+                    "utils": {
+                        "validation.js": "// validation.js\n\n// Input validation functions\n\nconst validateEmail = (email) => {\n  // Email validation logic\n};\n\nconst validatePassword = (password) => {\n  // Password validation logic\n};\n\nmodule.exports = {\n  validateEmail,\n  validatePassword\n};\n",
+                        "errorHandling.js": "// errorHandling.js\n\n// Error handling middleware\n\nconst errorHandler = (err, req, res, next) => {\n  console.error(err.stack);\n  res.status(500).render('error', { message: 'Something went wrong!' });\n};\n\nmodule.exports = errorHandler;\n"
+                    },
+                    "database": {
+                        "connection.js": "// connection.js\nconst mongoose = require('mongoose');\n\nconst connectDB = async () => {\n  try {\n    await mongoose.connect(process.env.MONGODB_URI, {\n      useNewUrlParser: true,\n      useUnifiedTopology: true\n    });\n    console.log('MongoDB connected...');\n  } catch (err) {\n    console.error(err.message);\n    process.exit(1);\n  }\n};\n\nmodule.exports = connectDB;\n"
+                    },
+                    "app.js": "// app.js\nconst express = require('express');\nconst path = require('path');\nconst connectDB = require('./database/connection');\n\nconst app = express();\n\n// Connect to MongoDB\nconnectDB();\n\n// Set up view engine\napp.set('view engine', 'ejs');\napp.set('views', path.join(__dirname, 'public', 'views'));\n\n// Serve static files\napp.use(express.static(path.join(__dirname, 'public')));\n\n// Body parser middleware\napp.use(express.urlencoded({ extended: true }));\n\n// Routes\napp.use('/', require('./routes/authRoutes'));\napp.use('/users', require('./routes/userRoutes'));\napp.use('/messages', require('./routes/messageRoutes'));\napp.use('/friend-requests', require('./routes/friendRequestRoutes'));\napp.use('/posts', require('./routes/postRoutes'));\n\nconst PORT = process.env.PORT || 3000;\n\napp.listen(PORT, () => console.log(`Server started on port ${PORT}`));\n"
+                },
+                "test": {
+                    "unit": {
+                        "userController.test.js": "// userController.test.js\n\n// Unit tests for userController.js\n",
+                        "authController.test.js": "// authController.test.js\n\n// Unit tests for authController.js\n",
+                        "messageController.test.js": "// messageController.test.js\n\n// Unit tests for messageController.js\n",
+                        "friendRequestController.test.js": "// friendRequestController.test.js\n\n// Unit tests for friendRequestController.js\n",
+                        "postController.test.js": "// postController.test.js\n\n// Unit tests for postController.js\n"
+                    },
+                    "integration": {
+                        "userRoutes.test.js": "// userRoutes.test.js\n\n// Integration tests for userRoutes.js\n",
+                        "authRoutes.test.js": "// authRoutes.test.js\n\n// Integration tests for authRoutes.js\n",
+                        "messageRoutes.test.js": "// messageRoutes.test.js\n\n// Integration tests for messageRoutes.js\n",
+                        "friendRequestRoutes.test.js": "// friendRequestRoutes.test.js\n\n// Integration tests for friendRequestRoutes.js\n",
+                        "postRoutes.test.js": "// postRoutes.test.js\n\n// Integration tests for postRoutes.js\n"
+                    }
+                },
+                "public": {
+                    "css": {
+                        "style.css": "/* style.css */\n\nbody {\n  font-family: sans-serif;\n}\n"
+                    },
+                    "js": {
+                        "script.js": "// script.js\n\n// Client-side JavaScript\n"
+                    },
+                    "views": {
+                        "index.ejs": "",
+                        "profile.ejs": "<%- include('partials/header') %>\n\n<h1><%= user.name %>'s Profile</h1>\n\n<%- include('partials/footer') %>\n",
+                        "login.ejs": "<%- include('partials/header') %>\n\n<h1>Login</h1>\n\n<%- include('partials/footer') %>\n",
+                        "signup.ejs": "<%- include('partials/header') %>\n\n<h1>Signup</h1>\n\n<%- include('partials/footer') %>\n",
+                        "messages.ejs": "<%- include('partials/header') %>\n\n<h1>Messages</h1>\n\n<%- include('partials/footer') %>\n",
+                        "newsfeed.ejs": "<%- include('partials/header') %>\n\n<h1>Newsfeed</h1>\n\n<%- include('partials/footer') %>\n"
+                    }
+                }
+            }
+        }
+    }
+}
