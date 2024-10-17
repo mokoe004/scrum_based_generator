@@ -50,3 +50,146 @@
 2024-10-09 00:15:43,022 - IndexLogger - INFO - Prompt converted to string successfully.
 2024-10-09 00:16:25,380 - IndexLogger - INFO - Prompt read successfully.
 2024-10-09 00:22:11,354 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-09 02:24:49,267 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:50:25,799 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:51:16,177 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:51:32,023 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:51:32,023 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-09 02:53:47,354 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:54:22,014 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:54:41,178 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 02:54:41,178 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-09 03:02:36,260 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:02:36,263 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-09 03:02:36,264 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:02:36,264 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:03:31,024 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\package_design.json saved successfully in file.
+2024-10-09 03:05:37,855 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:05:37,855 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-09 03:05:37,855 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:05:37,855 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:05:45,595 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\package_design.json saved successfully in file.
+2024-10-09 03:07:49,005 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:07:49,005 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:07:49,005 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:07:49,005 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:07:49,005 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-09 03:10:17,138 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-09 03:11:16,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:11:16,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:11:16,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:11:16,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:11:16,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-09 03:11:16,334 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-10 22:45:34,006 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:45:34,006 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:45:34,031 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:45:34,035 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:45:34,035 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-10 22:46:40,209 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-10 22:48:08,098 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:48:08,098 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:48:08,098 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:48:08,098 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:48:08,098 - IndexLogger - INFO - Prompt read successfully.
+2024-10-10 22:48:08,098 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-13 20:01:41,694 - IndexLogger - INFO - Prompt read successfully.
+2024-10-13 20:01:41,702 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-13 20:45:10,785 - IndexLogger - INFO - Prompt read successfully.
+2024-10-13 20:45:10,787 - IndexLogger - INFO - Prompt read successfully.
+2024-10-13 20:45:10,788 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-13 20:45:43,968 - IndexLogger - INFO - Personas generated successfully.
+2024-10-13 20:45:55,765 - IndexLogger - INFO - Epics generated successfully.
+2024-10-13 20:47:01,431 - IndexLogger - INFO - User stories generated successfully.
+2024-10-13 20:55:10,989 - IndexLogger - INFO - Prompt read successfully.
+2024-10-13 20:55:10,990 - IndexLogger - INFO - Prompt read successfully.
+2024-10-13 20:55:10,990 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-13 20:56:07,956 - IndexLogger - INFO - Personas generated successfully.
+2024-10-13 20:57:18,166 - IndexLogger - INFO - Epics generated successfully.
+2024-10-13 20:57:33,494 - IndexLogger - INFO - User stories generated successfully.
+2024-10-13 20:58:34,674 - IndexLogger - INFO - User stories generated successfully.
+2024-10-13 20:59:39,842 - IndexLogger - INFO - User stories generated successfully.
+2024-10-13 21:00:25,324 - IndexLogger - INFO - User stories generated successfully.
+2024-10-13 21:00:55,328 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\user_stories.json saved successfully in file.
+2024-10-13 21:02:54,903 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\tasks.json saved successfully in file.
+2024-10-14 02:23:09,218 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:23:09,234 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:23:09,234 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:23:09,234 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:23:09,234 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-14 02:25:08,761 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:25:08,761 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:25:08,762 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:25:08,762 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:25:08,763 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-14 02:28:47,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:28:47,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:28:47,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:28:47,334 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 02:28:47,334 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-14 02:28:53,932 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\package_design.json saved successfully in file.
+2024-10-14 02:29:42,633 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-14 21:52:13,689 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 21:52:13,689 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 21:52:13,689 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 21:52:13,689 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-14 21:52:23,863 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\package_design.json saved successfully in file.
+2024-10-14 21:52:31,265 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-14 21:57:21,192 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 21:57:21,192 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 21:57:21,192 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 21:57:21,192 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-14 21:57:34,343 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\package_design.json saved successfully in file.
+2024-10-14 21:57:45,774 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-14 22:59:44,943 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 22:59:44,943 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 22:59:44,950 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 22:59:44,950 - IndexLogger - INFO - Prompt read successfully.
+2024-10-14 22:59:44,950 - IndexLogger - INFO - Prompt converted to string successfully.
+2024-10-16 21:26:11,353 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:26:34,884 - IndexLogger - INFO - Personas generated successfully.
+2024-10-16 21:27:54,585 - IndexLogger - INFO - Epics generated successfully.
+2024-10-16 21:28:33,392 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:28:56,664 - IndexLogger - INFO - Personas generated successfully.
+2024-10-16 21:30:11,585 - IndexLogger - INFO - Epics generated successfully.
+2024-10-16 21:30:38,144 - IndexLogger - INFO - User stories generated successfully.
+2024-10-16 21:31:35,223 - IndexLogger - INFO - User stories generated successfully.
+2024-10-16 21:32:23,785 - IndexLogger - INFO - User stories generated successfully.
+2024-10-16 21:33:18,861 - IndexLogger - INFO - User stories generated successfully.
+2024-10-16 21:34:14,189 - IndexLogger - INFO - User stories generated successfully.
+2024-10-16 21:34:44,211 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\user_stories.json saved successfully in file.
+2024-10-16 21:38:20,311 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:38:20,311 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:39:06,037 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\tasks.json saved successfully in file.
+2024-10-16 21:40:07,211 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\package_design.json saved successfully in file.
+2024-10-16 21:40:49,600 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-16 21:43:10,060 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:43:10,060 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:43:10,060 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:43:10,060 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:43:24,740 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-16 21:46:42,609 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:46:42,609 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:46:42,609 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:46:42,609 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:48:13,187 - IndexLogger - INFO - C:\Users\ibrak\Desktop\Projekte\scrum_based_generator\output\code.json saved successfully in file.
+2024-10-16 21:50:07,568 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:50:07,568 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:50:07,568 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:50:07,568 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 21:50:07,568 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:13:51,335 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:13:51,335 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:13:51,335 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:13:51,348 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:13:51,348 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:24:55,470 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:24:55,470 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:24:55,474 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:24:55,481 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:24:55,481 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:25:09,668 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:25:09,670 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:25:09,670 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:25:09,670 - IndexLogger - INFO - Prompt read successfully.
+2024-10-16 22:25:09,670 - IndexLogger - INFO - Prompt read successfully.

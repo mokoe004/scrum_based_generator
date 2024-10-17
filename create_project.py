@@ -29,12 +29,20 @@ def create_structure(base_path, structure):
                 logger.error(f"Error creating file {current_path}: {e}")
 
 def create(json_data):
+    """
+    Create the project structure based on the JSON data.
+    
+    Parameters:
+    - json_data: The JSON data containing the project structure
+    """
     # Base directory where the project structure will be created
     base_directory = "generated_project"
 
     # Create the project structure based on the JSON data
     logger.info(f"Starting to create project structure in base directory: {base_directory}")
     try:
+        create_structure(base_directory, json_data["root_files"])
+        del json_data["root_files"]
         create_structure(base_directory, json_data)
         logger.info("Project structure creation completed.")
     except Exception as e:

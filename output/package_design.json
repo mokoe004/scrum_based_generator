@@ -1,76 +1,57 @@
 {
-    "directorys": {
+    "controllers": {
+        "searchController.js": "",
+        "paymentController.js": "",
+        "datasetController.js": "",
+        "annotationController.js": "",
+        "rawDataController.js": "",
+        "securityController.js": "",
+        "complianceController.js": ""
+    },
+    "models": {
+        "searchModel.js": "",
+        "paymentModel.js": "",
+        "datasetModel.js": "",
+        "annotationModel.js": "",
+        "rawDataModel.js": "",
+        "securityModel.js": "",
+        "complianceModel.js": ""
+    },
+    "views": {
+        "searchView.ejs": "",
+        "paymentView.ejs": "",
+        "datasetView.ejs": "",
+        "annotationView.ejs": "",
+        "rawDataView.ejs": "",
+        "securityView.ejs": "",
+        "complianceView.ejs": ""
+    },
+    "database": {
+        "dbConfig.js": "",
+        "migrations": {
+            "initialMigration.js": ""
+        }
+    },
+    "public": {
+        "css": {
+            "styles.css": ""
+        },
+        "js": {
+            "app.js": ""
+        }
+    },
+    "routes": {
+        "searchRoutes.js": "",
+        "paymentRoutes.js": "",
+        "datasetRoutes.js": "",
+        "annotationRoutes.js": "",
+        "rawDataRoutes.js": "",
+        "securityRoutes.js": "",
+        "complianceRoutes.js": ""
+    },
+    "root_files": {
         "app.js": "",
         "package.json": "",
-        "package-lock.json": "",
-        "src": {
-            "models": {
-                "user.js": "",
-                "message.js": "",
-                "friendRequest.js": "",
-                "post.js": ""
-            },
-            "controllers": {
-                "userController.js": "",
-                "authController.js": "",
-                "messageController.js": "",
-                "friendRequestController.js": "",
-                "postController.js": ""
-            },
-            "routes": {
-                "userRoutes.js": "",
-                "authRoutes.js": "",
-                "messageRoutes.js": "",
-                "friendRequestRoutes.js": "",
-                "postRoutes.js": ""
-            },
-            "services": {
-                "userService.js": "",
-                "authService.js": "",
-                "messageService.js": "",
-                "friendRequestService.js": "",
-                "postService.js": ""
-            },
-            "utils": {
-                "validation.js": "",
-                "errorHandling.js": ""
-            },
-            "database": {
-                "connection.js": ""
-            },
-            "app.js": ""
-        },
-        "test": {
-            "unit": {
-                "userController.test.js": "",
-                "authController.test.js": "",
-                "messageController.test.js": "",
-                "friendRequestController.test.js": "",
-                "postController.test.js": ""
-            },
-            "integration": {
-                "userRoutes.test.js": "",
-                "authRoutes.test.js": "",
-                "messageRoutes.test.js": "",
-                "friendRequestRoutes.test.js": "",
-                "postRoutes.test.js": ""
-            }
-        },
-        "public": {
-            "css": {
-                "style.css": ""
-            },
-            "js": {
-                "script.js": ""
-            },
-            "views": {
-                "index.ejs": "",
-                "profile.ejs": "",
-                "login.ejs": "",
-                "signup.ejs": "",
-                "messages.ejs": "",
-                "newsfeed.ejs": ""
-            }
-        }
+        "README.md": ""
     }
 }

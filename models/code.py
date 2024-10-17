@@ -1,27 +1,12 @@
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field
 
-# class Item(BaseModel):
-#     """"""
-
-#     directory: dict = Field(description="Subdirectory of the project.")
-#     file: str = Field(description="File of the project. e.g. 'main.py'")
-
-#     @model_validator
-#     def check_either_directory_or_file(cls, values):
-#         directory, file = values.get('directory'), values.get('file')
-#         if directory and file:
-#             raise ValueError("Either 'directory' or 'file' must be specified.")
-#         if not directory and not file:
-#             raise ValueError("Either 'directory' or 'file' must be specified.")
-#         return values
-
-
-# class PackageDesignModel(BaseModel):
-
-#     directory: dict = Field(None, description="Subdirectory of the project.")
-#     file: File = Field(str, description="File of the project.  ")
-
-class CodeModel(BaseModel):
+class PackageModel(BaseModel):
     """Base model for a code project."""
 
-    project: dict = Field(description="The project with all classes and generates files. Structure like package_design.")
+    controllers: dict = Field(description="Controllers of the project.")
+    models: dict = Field(description="Models of the project.")
+    views: dict = Field(description="Views of the project.")
+    database: dict = Field(description="Database of the project.")
+    public: dict = Field(description="Public files of the project, categorized by type (e.g., css, js).")
+    routes: dict = Field(description="Routes of the project.")
+    root_files: dict[str, str] = Field(description="Files located at the root of the project.")

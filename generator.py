@@ -1,5 +1,6 @@
 import os, json
 from typing import Any, List, Optional
+from langchain_mistralai import ChatMistralAI
 from pydantic import BaseModel, Field, ValidationError
 
 from logger_config import setup_logger
@@ -18,6 +19,10 @@ logger = setup_logger("GeneratorLogger", "generator.log")
 model = ChatGoogleGenerativeAI(
     model="gemini-1.5-pro", api_key=os.environ.get("GOOGLE_API_KEY")
 )
+
+# model = ChatMistralAI(
+#     model = "mistral-large-latest"
+#     )
 
 def generate_personas(pVision, personas_amount):
     prompt_in = f"""
@@ -209,37 +214,22 @@ def generate_tasks(userStories: dict):
 def generate_package_design(tasks: dict, userStorys: dict, pVision: str):
     prompt_in = f"""
                                 You are a project owner, responsible for creating a package design for user stories. 
-                                Generate a package design for the following tasks and user stories. 
+                                Generate only the package design for the following tasks and user stories. 
                                 Provide output as specified in the format_instructions.
 
                                 The package design should outline the structure and organization of the tasks, 
                                 including dependencies, timelines, and resources required. 
 
-                                1. NPM, Node.js, Express, JavaScript, ejs, and CSS will later be used for the implementation.
-                                2. First, consider which classes and methods you need based on the game rules.
+                                1. NPM, Node.js, Express, JavaScript, ejs, CSS and SQLite will later be used for the implementation.
+                                2. First, consider which classes and methods you need based.
                                 3. Think about the package design, ensuring that a frontend with ejs and CSS will be created.
                                 4. Format your output clearly and neatly. The names of the classes and methods, as well as the number of files and folders, are up to you.
                                 5. Structure: Define the overall structure of the package, including the main components and subtasks.
                                 6. Dependencies: Identify any dependencies between tasks that may affect the order of implementation.
 
-                                Use for the format_instructions use something like this schema. For the files (e.g class1.js, index.html) use an empty string as value:
-                                
-                                directories:{{
-                                        "src": {{
-                                                class1.js: "",
-                                                ...
-                                        }}
-                                        "test": {{
-                                                class1.test.js: "",
-                                                ...
-                                        }}
-                                        public: {{
-                                                index.html: "",
-                                                style.css: "",
-                                                script.js: "",
-                                                ...
-                                        }}
-                                }}
+                                Use for the format_instructions for the Output an keep in mind:
+                                    When you want to display a directory use the name as key and a dict with the files or other directorys as value. 
+                                    When you want to display a file use the name including suffix as key and a empty string as value.
 
                                 Product Vision: {pVision} \n\n
                                 User Storys: {userStorys} \n\n
@@ -252,10 +242,11 @@ def generate_package_design(tasks: dict, userStorys: dict, pVision: str):
 
 def generate_code(tasks: dict, pVision: str, package_design: dict):
     prompt_in = f"""
-    Generate the following code based on the package design, tasks, and product vision. Each task should be implemented step by step to ensure a fully functional and valid solution. 
+    Generate the following classes and files based on the package design, tasks, and product vision. Each task should be implemented step by step to ensure a fully functional and valid solution. 
     Ensure the generated code is appropriate for a project built with Node.js, Express, ejs, and CSS, and ensure all the dependencies, files, and folders are correctly structured.
+    Every file should be filled with code that aligns with the task requirements and the overall package design.
 
-    1. The implementation will be done using NPM, Node.js, Express, JavaScript, ejs, and CSS.
+    1. The implementation will be done using NPM, Node.js, Express, JavaScript, ejs, CSS and SQLite.
     2. Code for routes, controllers, models, and services should be generated in a structured and modular way.
     3. Frontend (ejs, CSS) files should be integrated correctly and align with the backend logic.
     4. Task dependencies should follow the package design with appropriate files for each module
@@ -266,7 +257,7 @@ def generate_code(tasks: dict, pVision: str, package_design: dict):
     Tasks: {tasks} \n\n
     Package Design: {package_design} \n\n
     """
-    response = generate_valid_json(prompt_in, code.CodeModel)
+    response = generate_valid_json(prompt_in, code.PackageModel)
     logger.info("Code generated successfully.")
     return response
 
