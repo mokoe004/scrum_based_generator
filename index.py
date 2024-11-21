@@ -5,12 +5,12 @@ import time
 logger = setup_logger("IndexLogger", "index.log")
 
 user_stories_path = (
-    "C:\\Users\\ibrak\\Desktop\\Projekte\\scrum_based_generator\\output\\user_stories.json"
+    "./output/user_stories.json"
 )
-tasks_path = ("C:\\Users\\ibrak\\Desktop\\Projekte\\scrum_based_generator\\output\\tasks.json")
-package_design_path = ("C:\\Users\\ibrak\\Desktop\\Projekte\\scrum_based_generator\\output\\package_design.json")
-prompt_path = ("C:\\Users\\ibrak\\Desktop\\Projekte\\scrum_based_generator\\prompt.json")
-code_path = ("C:\\Users\\ibrak\\Desktop\\Projekte\\scrum_based_generator\\output\\code.json")
+tasks_path = ("./output/tasks.json")
+package_design_path = ("output/package_design.json")
+prompt_path = ("./prompt_demo.json")
+code_path = ("./output/code.json")
 
 
 def read_prompt_json(filepath) -> dict:
@@ -40,32 +40,32 @@ def save_as_json(pData, filepath):
         logger.info(f"{filepath} saved successfully in file.")
 
 def main():
-    tasks = read_prompt_json(tasks_path)
-    epics = read_prompt_json(user_stories_path)
-    package_design = read_prompt_json(package_design_path)
-    code = read_prompt_json(code_path)
+    #tasks = read_prompt_json(tasks_path)
+    #epics = read_prompt_json(user_stories_path)
+    #package_design = read_prompt_json(package_design_path)
+    #code = read_prompt_json(code_path)
     pvision = read_prompt_json(prompt_path)["product_vision"]
-    # personas = generator.generate_personas(pvision, 5)
-    # logger.info("Personas generated successfully.")
-    # epics = generator.generate_epics(pvision, personas)
-    # time.sleep(60)
-    # logger.info("Epics generated successfully.")
-    # for epic in epics:
-    #     userStories = generator.generate_user_storys(pvision, personas, epic)
-    #     logger.info("User stories generated successfully.")
-    #     epic["user_stories"] = userStories
-    #     time.sleep(30)
-    # save_as_json(epics, user_stories_path)
-    # time.sleep(30)
-    # tasks = generator.generate_tasks(epics)
-    # save_as_json(tasks, tasks_path)
-    # time.sleep(30)
-    # package_design = generator.generate_package_design(tasks, epics, pvision)
+    personas = generator.generate_personas(pvision, 5)
+    logger.info("Personas generated successfully.")
+    epics = generator.generate_epics(pvision, personas)
+    time.sleep(60)
+    logger.info("Epics generated successfully.")
+    for epic in epics:
+        userStories = generator.generate_user_storys(pvision, personas, epic)
+        logger.info("User stories generated successfully.")
+        epic["user_stories"] = userStories
+        time.sleep(30)
+    save_as_json(epics, user_stories_path)
+    time.sleep(30)
+    tasks = generator.generate_tasks(epics)
+    save_as_json(tasks, tasks_path)
+    time.sleep(30)
+    package_design = generator.generate_package_design(tasks, epics, pvision)
     # save_as_json(package_design, package_design_path)
     # time.sleep(30)
     # code = generator.generate_code(tasks, pvision, package_design)
     # save_as_json(code, code_path)
-    create_project.create(code)
+    # create_project.create(code)
 
 if __name__ == "__main__":
      main()

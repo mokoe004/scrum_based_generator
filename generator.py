@@ -121,32 +121,6 @@ def generate_user_storys(pVision: str, personas: dict, epic: dict):
     logger.info(response)
     return response["user_stories"]
 
-
-# def generate_acceptance_criteria(userStory: dict):
-    prompt_in = f"""
-                                You are a project owner, responsible for creating acceptance criteria for user stories. 
-                                Generate acceptance criteria for the following user stories. 
-                                Provide only the acceptance criteria in JSON as output.
-
-                                Generate between 3 and 8 acceptance criteria for the following user story. 
-                                Ensure that the acceptance criteria are specific, measurable, and achievable. 
-                                Provide only the acceptance criteria as an python array as output. 
-                                For the following User Stories provided in JSON format, generate between 3 and 8 acceptance criteria for each. The acceptance criteria should be clear, measurable, and focused on what the system needs to achieve rather than how it is implemented. Follow these best practices when creating the criteria:
-                                
-                                User Story: {userStory} \n\n
-
-                                1. Clarity: Enacceptance criterion is specific and easy to understand.
-                                2. Measurability: The criteria must be testable and verifiable, either through automated tests or manual review.
-                                3. Focus on the outcome: The criteria should describe what the system needs to do, not how to do it.
-                                4. Edge Cases: Consider edge cases and sure that each negative scenarios where the system might fail or need to handle errors gracefully.
-                                5. User Perspective: Write the acceptance criteria from the personas perspective of the user story, focusing on their interactions and expectations.
-                                6. Success Conditions: Define what constitutes success for each user story, including any conditions for completing the feature.
-                """
-    response = generate_valid_json(prompt_in, user_storys.AcceptanceCriteriaModel)
-    logger.info("Acceptance criteria generated successfully.")
-    return response["acceptance_criteria"]
-
-
 def generate_tasks(userStories: dict):
     prompt_in = f"""
                                 You are a project owner, responsible for creating tasks for user stories. 
@@ -172,44 +146,6 @@ def generate_tasks(userStories: dict):
     response = generate_valid_json(prompt_in, user_storys.TasksModel)
     logger.info("Tasks generated successfully.")
     return response["tasks"]
-
-
-# def create_backlog(userStorys: dict):
-    """
-    Generate a backlog for the given user stories. Prioritize the user stories based on their importance and dependencies,
-    by sorting them in the order they should be implemented within the array.
-
-    Args:
-    userStorys (dict): The user stories to generate the backlog for.
-    """
-    prompt_in = f"""
-                                You are a project owner, responsible for creating a backlog for user stories. 
-                                You should only do the prioritization of the user stories based on their importance and dependencies.
-                                Provide only the backlog in JSON as output.
-
-                                Generate a backlog for the following user stories. 
-                                Prioritize the user stories based on their importance and dependencies, 
-                                by sorting them in the order they should be implemented within the array. 
-                                Provide only the backlog as an python array as output. 
-
-                                User Storys: {userStorys} \n\n
-
-                                1. Importance: Consider the business value and impact of each user story on the overall project goals.
-                                2. Dependencies: Identify any dependencies between user stories that may affect the order of implementation.
-                                3. Complexity: Evaluate the complexity and effort required to implement each user story.
-                                4. Priority: Assign a priority to each user story based on its importance and dependencies.
-                                5. Order: Sort the user stories in the array based on their priority and dependencies.
-                                        """
-    parser = JsonOutputParser(pydantic_object=List[str])
-    prompt = PromptTemplate(
-        template=prompt_in,
-        partial_variables={"format_instructions": parser.get_format_instructions()},
-    )
-    chain = prompt | model | parser
-    response = generate_valid_json(chain, List[str])
-    logger.info("Backlog generated successfully.")
-    return response
-
 
 def generate_package_design(tasks: dict, userStorys: dict, pVision: str):
     prompt_in = f"""
@@ -261,6 +197,27 @@ def generate_code(tasks: dict, pVision: str, package_design: dict):
     logger.info("Code generated successfully.")
     return response
 
+def generate_tests(tasks: dict, pVision: str, generated_code: dict):
+    prompt_in = f"""
+    Generate the following tests based on the code, tasks, and product vision. Each test should validate the functionality and integrity of the code generated for the project. 
+    Ensure that the tests cover all critical components of the project, including routes, controllers, models, and services. 
+    The tests should be structured and modular, following best practices for unit and integration testing in Node.js.
+
+    1. The tests will be implemented using NPM, Node.js, Express, JavaScript, ejs, CSS and SQLite.
+    2. Test each module (routes, controllers, models, services) individually to ensure they function correctly.
+    3. Include both unit tests and integration tests to validate the interactions between components.
+    4. Ensure the tests cover all critical functionality and edge cases to validate the robustness of the code.
+    5. Each test should be clearly defined, with specific test cases and expected outcomes.
+    6. Follow best practices for testing in Node.js, including mocking, assertions, and test coverage.
+
+    Product Vision: {pVision} \n\n
+    Tasks: {tasks} \n\n
+    Code: {generated_code} \n\n
+    """
+    response = generate_valid_json(prompt_in, code.TestsModel)
+    logger.info("Tests generated successfully.")
+    return response
+
 
 def generate_valid_json(prompt_in: str, scheme: BaseModel) -> dict:
     """
@@ -301,12 +258,3 @@ def generate_valid_json(prompt_in: str, scheme: BaseModel) -> dict:
             count += 1
     logger.error("Failed to generate valid JSON after multiple attempts.")
     raise ValueError("Failed to generate valid JSON.")
-
-
-# code_filling_prompt = f"""
-# Based on the following package design, implement the code for the specified classes and methods. Ensure that the code is efficient, modular, and follows best practices for JavaScript, Express, and ejs.
-
-# Package Design: {package_design}
-
-# Implement the following class: {class_name} with the following methods: {method_names}. Ensure that each method is fully functional and tested.
-# """
